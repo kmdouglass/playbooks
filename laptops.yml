@@ -1,9 +1,10 @@
 ---
 - name: Runs local provisioning steps for a laptop
   hosts: local
-  become: yes
   roles:
     - common
+    - git
+    - dotfiles
   vars:
     - home_dirs:
         opt: opt

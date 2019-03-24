@@ -1,0 +1,42 @@
+---
+- name: Clones the dotfiles repository
+  git:
+    dest: "{{ dotfiles.src_dir }}"
+    repo: git@github.com:kmdouglass/dotfiles.git
+
+
+- name: Lists the contents of the dotfiles repository
+  find:
+    excludes: '.git'
+    file_type: file
+    hidden: yes
+    paths: "{{ dotfiles.src_dir }}"
+    recurse: no
+    use_regex: no
+  register: find_dotfiles
+
+
+- name: Creates a symlink to the contents of the dotfiles repo in home directory
+  file:
+    path: "{{ansible_env.HOME }}/{{ item.path | basename }}"
+    src: "{{ item.path }}"
+    state: link
+  loop: "{{ find_dotfiles.files }}"
+
+
+# The following should be made DRY if another directory is added to the dotfiles repo
+- name: Lists the contents of the dotfiles/.config directory
+  find:
+    file_type: file
+    hidden: yes
+    paths: "{{ dotfiles.src_dir }}/.config"
+    recurse: no
+    use_regex: no
+  register: find_dotfiles_config
+
+- name: Creates a symlink to the contents of the dotfiles .config dir in the home .config dir
+  file:
+    path: "{{ansible_env.HOME }}/.config/{{ item.path | basename }}"
+    src: "{{ item.path }}"
+    state: link
+  loop: "{{ find_dotfiles_config.files }}"
