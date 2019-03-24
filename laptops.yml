@@ -2,7 +2,7 @@
 - name: Runs local provisioning steps for a laptop
   hosts: local
   roles:
-    - common
+    - user
     - git
     - dotfiles
   vars:
