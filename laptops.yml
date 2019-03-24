@@ -1,0 +1,12 @@
+---
+- name: Runs local provisioning steps for a laptop
+  hosts: local
+  become: yes
+  roles:
+    - common
+  vars:
+    - home_dirs:
+        opt: opt
+        src: src
+        venvs: venvs
+    - username: kmdouglass

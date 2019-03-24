@@ -1,0 +1,35 @@
+---
+- name: Prints the hostname
+  command: hostname
+  register: hostname
+- debug: var=hostname.stdout_lines
+
+
+- name: Creates the user and generates SSH keys
+  user:
+    name: "{{ username }}"
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    state: present
+  register: user_registered
+
+
+- name: Show SSH public key
+  command: /bin/cat {{ user_registered.home }}/.ssh/id_rsa.pub
+  register: pub_key
+- debug: var=pub_key.stdout_lines
+
+
+- name: Waits for user to copy SSH public key
+  pause: prompt="Please add the SSH public key above to the relevant accounts"
+  register: pause
+
+
+- name: Creates the home workspace directories
+  file:
+    group: "{{ username }}"
+    mode: 0755
+    owner: "{{ username }}"
+    path: "{{ user_registered.home }}/{{ item.value }}"
+    state: directory
+  loop: "{{ home_dirs|dict2items }}"
