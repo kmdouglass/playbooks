@@ -1,8 +1,10 @@
 ---
 - name: Sets become=yes for the entire role
   become: yes
+  tags: bootstrap
   block:
     - name: Prints the hostname
+      changed_when: no
       command: hostname
       register: hostname
     - debug: var=hostname.stdout_lines
@@ -18,6 +20,7 @@
 
 
     - name: Show SSH public key
+      changed_when: no
       command: /bin/cat {{ user_registered.home }}/.ssh/id_rsa.pub
       register: pub_key
     - debug: var=pub_key.stdout_lines
