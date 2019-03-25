@@ -6,6 +6,7 @@
     - user
     - git
     - dotfiles
+    - emacs
   vars:
     - home_dirs:
         opt: opt

@@ -1,0 +1,22 @@
+---
+- name: Add the PPA for Emacs 26
+  apt_repository:
+    repo: ppa:kelleyk/emacs
+  become: yes
+
+- name: Install Emacs 26
+  apt:
+    name: emacs26
+    update_cache: yes
+  become: yes
+
+- name: Clones the .emacs.d repository
+  git:
+    dest: "{{ emacs.src_dir }}"
+    repo: git@github.com:kmdouglass/.emacs.d.git
+
+- name: Create a symlink to the .emacs.d repo in the home folder
+  file:
+    path: "{{ ansible_env.HOME }}/{{ emacs.src_dir | basename }}"
+    src: "{{ emacs.src_dir }}"
+    state: link
