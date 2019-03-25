@@ -1,0 +1,14 @@
+---
+- name: Runs local provisioning steps for a workstation
+  hosts:
+    - local
+  roles:
+    - user
+    - git
+    - dotfiles
+  vars:
+    - home_dirs:
+        opt: opt
+        src: src
+        venvs: venvs
+    - username: kdouglas
