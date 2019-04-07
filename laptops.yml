@@ -6,6 +6,7 @@
     - git
     - dotfiles
     - emacs
+    - python
   vars:
     - home_dirs:
         opt: opt
