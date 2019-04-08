@@ -8,6 +8,29 @@
   shell: rclone config create kmd-backup drive
   tags: bootstrap
 
+- name: Create the scripts directory
+  file:
+    mode: 0775
+    path: "{{ansible_env.HOME }}/scripts"
+    state: directory
+
+- name: Pull the scripts from Google drive
+  shell: "rclone copy {{ rclone.backups[ansible_env.HOME + '/scripts/'] }} {{ ansible_env.HOME }}/scripts"
+
+- name: Create temp folder to pull Google drive backups
+  tempfile:
+    state: directory
+    suffix: gdrive
+  register: gdrive_dir
+
+- name: Pull the folder containing the .bash_local backup from Google drive
+  shell: "rclone copy {{ rclone.backups['/etc/fstab'] }} {{ gdrive_dir.path }}"
+
+- name: Copy the .bash_local file from the temp directory to the home directory
+  copy:
+    src: "{{ gdrive_dir.path }}/.bash_local"
+    dest: "{{ ansible_env.HOME }}/.bash_local"
+
 - name: Add crontab entries for backups
   cron:
     name: "Backup {{ item.key }}"
