@@ -16,7 +16,20 @@
 
 - name: Pull the scripts from Google drive
   shell: "rclone copy {{ rclone.backups[ansible_env.HOME + '/scripts/'] }} {{ ansible_env.HOME }}/scripts"
-  tags: bootstrap
+
+- name: Create temp folder to pull Google drive backups
+  tempfile:
+    state: directory
+    suffix: gdrive
+  register: gdrive_dir
+
+- name: Pull the folder containing the .bash_local backup from Google drive
+  shell: "rclone copy {{ rclone.backups['/etc/fstab'] }} {{ gdrive_dir.path }}"
+
+- name: Copy the .bash_local file from the temp directory to the home directory
+  copy:
+    src: "{{ gdrive_dir.path }}/.bash_local"
+    dest: "{{ ansible_env.HOME }}/.bash_local"
 
 - name: Add crontab entries for backups
   cron:
