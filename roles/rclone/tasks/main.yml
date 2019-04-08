@@ -2,4 +2,15 @@
 - name: Download and install rclone
   apt:
     deb: "{{ rclone.deb_url }}"
-  become: yes  
+  become: yes
+
+- name: Setup the Google drive remote
+  shell: rclone config create kmd-backup drive
+  tags: bootstrap
+
+- name: Add crontab entries for backups
+  cron:
+    name: "Backup {{ item.key }}"
+    minute: "0"
+    job: "rclone sync {{ item.key }} {{ item.value }} -v"
+  loop: "{{ rclone.backups|dict2items }}"
