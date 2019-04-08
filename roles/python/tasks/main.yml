@@ -1,5 +1,5 @@
 ---
-- name: Add Python Deadsnaks PPA
+- name: Add Python Deadsnakes PPA
   apt_repository:
     repo: ppa:deadsnakes/ppa
   become: yes
