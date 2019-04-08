@@ -3,7 +3,6 @@
   hosts:
     - local
   roles:
-    - user
     - git
     - dotfiles
     - emacs
