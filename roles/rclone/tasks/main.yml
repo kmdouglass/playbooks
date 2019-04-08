@@ -1,0 +1,5 @@
+---
+- name: Download and install rclone
+  apt:
+    deb: "{{ rclone.deb_url }}"
+  become: yes  
