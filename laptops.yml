@@ -2,11 +2,11 @@
 - name: Runs local provisioning steps for a laptop
   hosts: local
   roles:
-    - user
-    - git
-    - dotfiles
-    - emacs
-    - python
+    - {role: 'user', tags: 'user'}
+    - {role: 'git', tags: 'git'}
+    - {role: 'dotfiles', tags: 'dotfiles'}
+    - {role: 'emacs', tags: 'emacs'}
+    - {role: 'python', tags: 'python'}
   vars:
     - home_dirs:
         opt: opt
