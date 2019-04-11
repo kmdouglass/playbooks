@@ -5,3 +5,4 @@ rclone:
     /etc/fstab: "kmd-backup:/backups/system"
     /home/kdouglas/.bash_local: "kmd-backup:/backups/system"
     /home/kdouglas/scripts/: "kmd-backup:/backups/scripts"
+    /home/kdouglas/org/: "kmd-backup:/backups/org"
