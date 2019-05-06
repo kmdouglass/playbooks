@@ -10,6 +10,7 @@
     - {role: 'emacs', tags: 'emacs'}
     - {role: 'python', tags: 'python'}
     - {role: 'rclone', tags: 'rclone'}
+    - {role: 'shellcheck', tags: 'shellcheck'}
   vars:
     - home_dirs:
         opt: opt

@@ -7,6 +7,7 @@
     - {role: 'dotfiles', tags: 'dotfiles'}
     - {role: 'emacs', tags: 'emacs'}
     - {role: 'python', tags: 'python'}
+    - {role: 'shellcheck', tags: 'shellcheck'}
   vars:
     - home_dirs:
         opt: opt
