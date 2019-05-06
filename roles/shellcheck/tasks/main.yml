@@ -1,0 +1,11 @@
+---
+- name: Install Cabal
+  apt:
+    name: cabal-install
+    update_cache: yes
+  become: yes
+
+- name: Install ShellCheck
+  shell: |
+    cabal update
+    cabal install ShellCheck
