@@ -4,3 +4,8 @@
     path: "{{ ansible_env.HOME }}/.profile"
     block: |
       export PATH="$PATH:{{ go.install_dir }}:$HOME/go/bin"
+
+
+- name: Install the golint package
+  changed_when: no
+  command: go get -u golang.org/x/lint/golint
