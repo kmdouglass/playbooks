@@ -1,0 +1,6 @@
+---
+- name: Add environment variables for Go to the Bash login profile
+  blockinfile:
+    path: "{{ ansible_env.HOME }}/.profile"
+    block: |
+      export PATH="$PATH:{{ go.install_dir }}:$HOME/go/bin"
