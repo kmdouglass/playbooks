@@ -9,3 +9,8 @@
 - name: Install the golint package
   changed_when: no
   command: go get -u golang.org/x/lint/golint
+
+
+- name: Install the errcheck package
+  changed_when: no
+  command: go get -u github.com/kisielk/errcheck
