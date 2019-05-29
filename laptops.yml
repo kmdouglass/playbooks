@@ -5,6 +5,7 @@
     - {role: 'user', tags: 'user'}
     - {role: 'git', tags: 'git'}
     - {role: 'dotfiles', tags: 'dotfiles'}
+    - {role: 'tmux', tags: 'tmux'}
     - {role: 'emacs', tags: 'emacs'}
     - {role: 'python', tags: 'python'}
     - {role: 'shellcheck', tags: 'shellcheck'}
