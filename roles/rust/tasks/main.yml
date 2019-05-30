@@ -1,0 +1,33 @@
+---
+- name: Check for rustup
+  shell: rustup --version
+  register: rustup
+  ignore_errors: true
+- debug: var=rustup.rc
+  
+- name: Download the rustup-init script
+  get_url:
+    url: https://sh.rustup.rs
+    dest: "{{ ansible_env.HOME }}/opt/rustup-init.sh"
+    mode: 0755
+  when: rustup.rc != 0
+
+- name: Run the rustup init script
+  expect:
+    command: "/bin/sh {{ansible_env.HOME}}/opt/rustup-init.sh"
+    responses:
+      ">": "1"
+    timeout: 90
+  when: rustup.rc != 0
+
+- name: Install cargo fmt
+  changed_when: no
+  command: rustup component add rustfmt
+  environment:  
+    PATH: "{{ ansible_env.HOME }}/.cargo/bin:{{ lookup('env', 'PATH') }}"
+
+- name: Install cargo clippy
+  changed_when: no
+  command: rustup component add clippy
+  environment:  
+    PATH: "{{ ansible_env.HOME }}/.cargo/bin:{{ lookup('env', 'PATH') }}"
