@@ -1,0 +1,10 @@
+---
+- name: Runs local provisioning steps for laptops at home
+  hosts: local
+  roles:
+    - {role: 'user', tags: 'user'}
+  vars:
+    - username: kmdouglass
+
+- name: Installs apps common to all environments
+  import_playbook: common.yml

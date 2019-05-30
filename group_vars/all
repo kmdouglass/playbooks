@@ -1,0 +1,5 @@
+---
+home_dirs:
+  opt: opt
+  src: src
+  venvs: venvs

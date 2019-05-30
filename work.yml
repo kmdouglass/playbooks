@@ -1,0 +1,19 @@
+---
+- name: Runs local provisioning steps for a workstation
+  hosts:
+    - local
+  roles:
+    - {role: 'user', tags: 'user'}
+  vars:
+    - username: kdouglas
+
+- name: Installs apps common to all environments
+  import_playbook: common.yml
+
+- name: Installs apps for work
+  hosts:
+    - local
+  roles:
+    - {role: 'system-work', tags: 'system-work'}
+    - {role: 'go', tags: 'go'}
+    - {role: 'rclone', tags: 'rclone'}
