@@ -1,0 +1,14 @@
+---
+- name: Add Remmina PPA
+  apt_repository:
+    repo: ppa:remmina-ppa-team/remmina-next
+  become: yes
+
+- name: Install Remmina
+  apt:
+    name:
+      - remmina
+      - remmina-plugin-rdp
+      - remmina-plugin-secret
+      - remmina-plugin-spice
+  become: yes
