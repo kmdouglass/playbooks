@@ -17,3 +17,4 @@
     - {role: 'system-work', tags: 'system-work'}
     - {role: 'go', tags: 'go'}
     - {role: 'rclone', tags: 'rclone'}
+    - {role: 'remmina', tags: 'remmina'}
