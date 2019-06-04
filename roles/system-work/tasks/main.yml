@@ -17,8 +17,8 @@
     path: /etc/fstab
     block: |
       /dev/sda1       /mnt/Data       ext4    defaults        0       0
-      //devsynology/perftracker /mnt/devsynology/perftracker cifs vers=1.0,credentials=/home/kdouglas/.smbcredentials,sfu,mfsymlinks,file_mode=0777,dir_mode=0777,iocharset=utf8,sec=ntlm 0 0
-      //synology1/misc /mnt/synology1/misc cifs vers=1.0,credentials=/home/kdouglas/.smbcredentials,iocharset=utf8,sec=ntlm 0 0
-      //synology1/dev /mnt/synology1/dev cifs vers=1.0,credentials=/home/kdouglas/.smbcredentials,sfu,mfsymlinks,file_mode=0777,dir_mode=0777,iocharset=utf8,sec=ntlm 0 0
-      //synology1/data /mnt/synology1/data cifs vers=1.0,credentials=/home/kdouglas/.smbcredentials,iocharset=utf8,sec=ntlm 0 0
+      //10.42.10.16/perftracker /mnt/devsynology/perftracker cifs vers=1.0,credentials=/home/kdouglas/.smbcredentials,sfu,mfsymlinks,file_mode=0777,dir_mode=0777,iocharset=utf8,sec=ntlm,_netdev 0 0
+      //10.42.10.14/misc /mnt/synology1/misc cifs vers=1.0,credentials=/home/kdouglas/.smbcredentials,iocharset=utf8,sec=ntlm,_netdev 0 0
+      //10.42.10.14/dev /mnt/synology1/dev cifs vers=1.0,credentials=/home/kdouglas/.smbcredentials,sfu,mfsymlinks,file_mode=0777,dir_mode=0777,iocharset=utf8,sec=ntlm,_netdev 0 0
+      //10.42.10.14/data /mnt/synology1/data cifs vers=1.0,credentials=/home/kdouglas/.smbcredentials,iocharset=utf8,sec=ntlm,_netdev 0 0
   become: yes
