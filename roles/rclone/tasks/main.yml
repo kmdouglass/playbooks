@@ -35,5 +35,6 @@
   cron:
     name: "Backup {{ item.key }}"
     minute: "0"
+    hour: "12"
     job: "rclone sync {{ item.key }} {{ item.value }} -v"
   loop: "{{ rclone.backups|dict2items }}"
