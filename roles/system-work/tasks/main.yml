@@ -29,3 +29,10 @@
     minute: "0"
     hour: "12"
     job: "cp -r {{ansible_env.HOME}}/.password-store /mnt/Data/backups"
+
+- name: Backup opt directory
+  cron:
+    name: "backup opt directory"
+    minute: "0"
+    hour: "12"
+    job: "rsync -avb {{ansible_env.HOME}}/opt /mnt/Data/backups/"
