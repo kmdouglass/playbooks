@@ -21,16 +21,22 @@
     src: "{{ emacs.src_dir }}"
     state: link
 
+- name: Create the user systemd configuration folder if it doesn't exist
+  file:
+    path: "{{ emacs.service_file_path }}"
+    mode: "0755"
+
 - name: Create the emacsd unit file in the user's systemd configuration directory
   template:
     src: emacsd.service.j2
-    dest: "{{ ansible_env.HOME }}/.config/systemd/user/"
+    dest: "{{ emacs.service_file_path }}/emacsd.service"
     mode: "0644"
 
 - name: Launch the emacs server at startup
   systemd:
     name: emacsd
     daemon-reload: yes
+    enabled: yes
     state: started
     scope: user
     

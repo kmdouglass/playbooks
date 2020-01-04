@@ -1,4 +1,5 @@
 ---
 emacs:
+  service_file_path: "{{ ansible_env.HOME }}/.config/systemd/user/"
   src_dir: "{{ ansible_env.HOME }}/{{ home_dirs.src }}/.emacs.d"
   starting_args: "-todos"
