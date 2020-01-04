@@ -1,3 +1,4 @@
 ---
 emacs:
   src_dir: "{{ ansible_env.HOME }}/{{ home_dirs.src }}/.emacs.d"
+  starting_args: "-todos"

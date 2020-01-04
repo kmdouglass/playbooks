@@ -21,10 +21,11 @@
     src: "{{ emacs.src_dir }}"
     state: link
 
-- name: Copy the emacsd unit file to systemd's configuration directory
-  copy:
-    src: emacsd.service
+- name: Create the emacsd unit file in the user's systemd configuration directory
+  template:
+    src: emacsd.service.j2
     dest: "{{ ansible_env.HOME }}/.config/systemd/user/"
+    mode: "0644"
 
 - name: Launch the emacs server at startup
   systemd:
