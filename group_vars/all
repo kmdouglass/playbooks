@@ -2,5 +2,6 @@
 ansible_python_interpreter: /usr/bin/python3
 home_dirs:
   opt: opt
+  scripts: scripts
   src: src
   venvs: venvs

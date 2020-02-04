@@ -39,4 +39,23 @@
     enabled: yes
     state: started
     scope: user
+
+- name: Add the scripts and bin directories if they do not exist
+  file:
+    path: "{{ ansible_env.HOME }}/{{ item }}"
+    state: directory
+  loop:
+    - bin
+    - scripts
     
+- name: Add the todo script to the scripts directory for org-capture templates
+  copy:
+    src: todo.sh
+    dest: "{{ ansible_env.HOME }}/scripts"
+    mode: "0755"
+
+- name: Create a link to the todo script in the user's home directory
+  file:
+    path: "{{ ansible_env.HOME }}/bin/todo"
+    src: "{{ ansible_env.HOME }}/scripts/todo.sh"
+    state: link
